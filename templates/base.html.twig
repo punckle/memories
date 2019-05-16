@@ -11,7 +11,7 @@
     </head>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">TITLE</a>
+            <a class="navbar-brand" href="{{ path('home') }}">TITLE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accueil</a>
+                        <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">A propos d'Alain</a>
@@ -36,7 +36,7 @@
                         <a href="" class="nav-link">Participer au projet</a>
                     </li>
                     <li class="class-item"></li>
-                        <a href="" class="nav-link">Se connecter</a>
+                        <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
                     </li>
                 </ul>
             </div>
