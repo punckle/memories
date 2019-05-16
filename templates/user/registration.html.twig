@@ -1,0 +1,23 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription à ... {% endblock %}
+
+{% block body %}
+
+    <div class="container text-center">
+        <div class="card mx-auto mt-5" style="width: 50em;">
+            <div class="card-header">
+                <h1>Inscription à ...</h1>
+            </div>
+            {{ form_start(form) }}
+            <div class="my-4">{{ form_widget(form.firstName) }}</div>
+            <div class="mb-4">{{ form_widget(form.lastName) }}</div>
+            <div class="mb-4">{{ form_widget(form.email) }}</div>
+            <div class="mb-4">{{ form_widget(form.password) }}</div>
+            <button type="submit" class="btn btn-success mb-4">S'inscrire !</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
