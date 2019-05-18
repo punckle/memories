@@ -33,12 +33,13 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordEncoder->encodePassword($user, $form->get('password')->getData()));
             $user->setProfilePicture('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6JN5ua_iwdXe-SNEfjtCozzySIqJnYxOtUDUfaRc5KGA0eCefxA');
+            $user->setHasCompletedProfile(false);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Merci pour votre inscription !');
+            $this->addFlash('success', 'Merci pour votre inscription ! Vous pouvez aller dans vos paramètres pour changer votre photo de profil et vous présenter.');
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,          // the User object you just created
@@ -47,6 +48,8 @@ class UserController extends AbstractController
                 'main'          // the name of your firewall in security.yaml
             );
         }
+
+        $this->redirectToRoute('settings');
 
         return $this->render('user/registration.html.twig', [
             'form' => $form->createView()
@@ -78,6 +81,17 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush($user);
 
             $this->addFlash('success', 'Les changements ont été sauvegardés !');
+
+            if ($user->getProfilePicture() != 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6JN5ua_iwdXe-SNEfjtCozzySIqJnYxOtUDUfaRc5KGA0eCefxA' && $user->getBiography() != null && $user->getHasCompletedProfile() == false) {
+                $user->setHasCompletedProfile(true);
+                $this->getDoctrine()->getManager()->persist($user);
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('success', 'Bravo, votre profil est complet !');
+            } else {
+                $this->addFlash('warning', 'Vous pouvez compléter votre profil pour que les utilisateurs 
+                et Alain puissent vous reconnaître ! Petit conseil : personnalisez votre photo de profil et 
+                présentez-vous en quelques phrases.');
+            }
 
             $this->redirectToRoute('settings');
         }

@@ -67,6 +67,11 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasCompletedProfile;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -219,6 +224,18 @@ class User implements UserInterface
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getHasCompletedProfile(): ?bool
+    {
+        return $this->hasCompletedProfile;
+    }
+
+    public function setHasCompletedProfile(bool $hasCompletedProfile): self
+    {
+        $this->hasCompletedProfile = $hasCompletedProfile;
 
         return $this;
     }
