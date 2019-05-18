@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\SettingsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,8 +44,21 @@ class UserController extends AbstractController
 
     /**
      * @Route("/parametres", name="settings")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function settings()
+    public function settings(Request $request)
     {
+        $user = $this->getUser();
+        $form = $this->createForm(SettingsType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd('babar');
+        }
+
+        return $this->render('user/settings.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

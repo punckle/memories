@@ -4,4 +4,64 @@
 
 {% block body %}
 
+    <div class="container text-center">
+        <div class="card mx-auto mt-5">
+            <div class="card-header">
+                <h1 class="text-center mt-5 mb-5">Settings</h1>
+            </div>
+
+            <div class="container">
+                <div class="row flex-wrap-reverse justify-content-center">
+                    <div class="col-md-6">
+                        {{ form_start(form) }}
+                        <div class="my-4">{{ form_widget(form.email) }}</div>
+                        <div class="mb-4">{{ form_widget(form.firstName) }}</div>
+                        <div class="mb-4">{{ form_widget(form.lastName) }}</div>
+                        <div class="mb-4">{{ form_widget(form.profilePicture) }}</div>
+                        <button type="button" class="btn btn-warning my-4"><a href="" class="changePassword">Change my password</a></button>
+                    </div>
+                    <div class="col-md-4 row flex-column flex-nowrap mb-5">
+                        <div class="col-md-9 mt-3 text-center mx-auto">
+                            <img class="rounded-circle" style="width: 200px;height: 200px;"
+                                    {% if app.user.profilePicture matches '{^(https)://}' %}
+                                        src="{{ app.user.profilePicture ?? null }}"
+                                    {% else %}
+                                        src="/uploads/{{ app.user.profilePicture ?? null }}"
+                                    {% endif %} alt="profil">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">{{ form_widget(form.biography) }}</div>
+                <button type="submit" class="btn btn-primary mb-4">Save changes</button>
+                {{ form_end(form) }}
+            </div>
+            <br>
+            <br>
+            <div class="row justify-content-center">
+                <button type="button" class="btn btn-danger my-4 col-3" data-toggle="modal" data-target="#myModal">
+                    Delete my account
+                </button>
+            </div>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>We are sad to see you go...</h4>
+                            <p>Are you sure you want to delete your account on Bookshelves?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger"><a href="">Yes</a></button>
+                            <button class="button btn btn-success" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
