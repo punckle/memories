@@ -40,4 +40,11 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/parametres", name="settings")
+     */
+    public function settings()
+    {
+    }
 }
