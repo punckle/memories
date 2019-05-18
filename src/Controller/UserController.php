@@ -7,6 +7,7 @@ use App\Form\RegistrationFormType;
 use App\Form\SettingsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -16,7 +17,7 @@ class UserController extends AbstractController
      * @Route("/inscription", name="registration")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function registration(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -45,16 +46,30 @@ class UserController extends AbstractController
     /**
      * @Route("/parametres", name="settings")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function settings(Request $request)
     {
         $user = $this->getUser();
+        $img = $user->getProfilePicture();
+
         $form = $this->createForm(SettingsType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd('babar');
+            if ($request->files->get('settings')['profilePicture'] != null) {
+                $file = $form->get('profilePicture')->getData();
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileName);
+                $user->setProfilePicture($fileName);
+            } else {
+                $user->setProfilePicture($img);
+            }
+            $this->getDoctrine()->getManager()->flush($user);
+
+            $this->addFlash('success', 'Les changements ont été sauvegardés !');
+
+            $this->redirectToRoute('settings');
         }
 
         return $this->render('user/settings.html.twig', [
