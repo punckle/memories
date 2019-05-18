@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\SettingsType;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,5 +76,22 @@ class UserController extends AbstractController
         return $this->render('user/settings.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/delete", name="delete_account")
+     */
+    public function deleteAccount(ObjectManager $manager)
+    {
+        $user = $this->getUser();
+
+        $manager->remove($user);
+        $manager->flush();
+
+        $this->get('security.token_storage')->setToken(null);
+
+        $this->addFlash('success', 'Votre compte a bien été supprimé');
+
+        return $this->redirectToRoute('home');
     }
 }
