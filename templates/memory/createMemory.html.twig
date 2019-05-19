@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un souvenir{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">Création d'un souvenir</h1>
+    </div>
+
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="my-4">{{ form_widget(form.title) }}</div>
+        <div class="mb-4">Votre souvenir : {{ form_widget(form.content) }}</div>
+        <button type="submit" class="btn btn-success mb-4 float-right">Envoyer votre souvenir</button>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
