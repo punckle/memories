@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -71,6 +73,16 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $hasCompletedProfile;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Memory", mappedBy="user", orphanRemoval=true)
+     */
+    private $memories;
+
+    public function __construct()
+    {
+        $this->memories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -236,6 +248,37 @@ class User implements UserInterface
     public function setHasCompletedProfile(bool $hasCompletedProfile): self
     {
         $this->hasCompletedProfile = $hasCompletedProfile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Memory[]
+     */
+    public function getMemories(): Collection
+    {
+        return $this->memories;
+    }
+
+    public function addMemory(Memory $memory): self
+    {
+        if (!$this->memories->contains($memory)) {
+            $this->memories[] = $memory;
+            $memory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemory(Memory $memory): self
+    {
+        if ($this->memories->contains($memory)) {
+            $this->memories->removeElement($memory);
+            // set the owning side to null (unless already changed)
+            if ($memory->getUser() === $this) {
+                $memory->setUser(null);
+            }
+        }
 
         return $this;
     }
