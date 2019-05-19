@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les contributeurs{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/user.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="d-flex h-100 mt-5">
+                    <div class="image_outer_container">
+                        <div class="image_inner_container">
+                            <img
+                            {% if user.profilePicture matches '{^(https)://}' %}
+                                src="{{ user.profilePicture ?? null }}"
+                            {% else %}
+                                src="/uploads/{{ user.profilePicture ?? null }}"
+                            {% endif %} alt="profil">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-flex userName">
+                    <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

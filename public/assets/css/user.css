@@ -1,0 +1,38 @@
+html,body{
+    height: 100%;
+}
+.container{
+    height: 100%;
+    align-content: center;
+}
+
+.image_outer_container{
+    border-radius: 50%;
+    position: relative;
+}
+
+.image_inner_container{
+    border-radius: 50%;
+    padding: 5px;
+    background: steelblue;
+    background: -webkit-linear-gradient(to bottom, aliceblue, lightskyblue, steelblue);
+    background: linear-gradient(to bottom, aliceblue, lightblue, steelblue);
+}
+.image_inner_container img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
+
+.userName {
+    margin-top: 140px;
+}
+
+header.masthead {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 56px);
+    background-image: url("/assets/images/memory.jpg");
+    background-position: center center;
+    background-size: cover;
+}

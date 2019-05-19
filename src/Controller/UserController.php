@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\SettingsType;
+use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,6 +54,32 @@ class UserController extends AbstractController
 
         return $this->render('user/registration.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/utilisateurs", name="users")
+     * @param UserRepository $userRepository
+     * @return Response
+     */
+    public function index(UserRepository $userRepository)
+    {
+        $users = $userRepository->findAll();
+
+        return $this->render('user/index.html.twig', [
+            'users' => $users
+        ]);
+    }
+
+    /**
+     * @param User $user
+     * @Route("/utilisateur/{id}/details", name="user_details")
+     * @return Response
+     */
+    public function show(User $user)
+    {
+        return $this->render('user/show.html.twig', [
+            'user' => $user
         ]);
     }
 
