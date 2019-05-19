@@ -14,15 +14,18 @@ class MemoryController extends AbstractController
 {
     /**
      * @Route("/souvenirs", name="memories")
-     * @param Memory $memory
+     * @param MemoryRepository $memoryRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(MemoryRepository $memoryRepository)
     {
         $memories = $memoryRepository->findAll();
 
+        $latestMemories = $memoryRepository->latestMemories();
+
         return $this->render('memory/index.html.twig', [
-            'memories' => $memories
+            'memories' => $memories,
+            'latestMemories' => $latestMemories
         ]);
     }
 

@@ -19,32 +19,14 @@ class MemoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Memory::class);
     }
 
-    // /**
-    //  * @return Memory[] Returns an array of Memory objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function latestMemories()
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->select()
+            ->orderBy('m.createdAt', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Memory
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
