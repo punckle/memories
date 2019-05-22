@@ -8,17 +8,19 @@
 
 {% block body %}
 
+
     <div class="container">
-        <div class="row align-items-center my-5">
-            <div class="col-9">
-                <h1>{{ memory.title }}</h1>
+        <h1>{{ memory.title }}</h1>
+    </div>
+    <div class="container corpArticle">
+        <div class="row">
+            <div class="col-md-8 mb-3 mt-5 text-justify">
+                {{ memory.content | raw }}
             </div>
-            <div class="col-md-8 mb-3">
-                {{ memory.content|raw }}
-            </div>
-            <div class="col">
-                <div class="row">
-                    <div class="col-3 image_inner_container">
+            <div class="col-sm-12 col-md">
+                {% set a = memory.user %}
+                <div class="row mt-5">
+                    <div class="col-md-3 image_inner_container">
                         <img class="rounded-circle"
                         {% if memory.user.profilePicture matches '{^(https)://}' %}
                             src="{{ memory.user.profilePicture ?? null }}"
@@ -26,15 +28,15 @@
                             src="/uploads/{{ memory.user.profilePicture ?? null }}"
                         {% endif %} alt="profil">
                     </div>
-                    <div class="col mt-3 ml-3">
+                    <div class="col">
                         <h3 class="userName"><a href="{{ path('user_details', {'id': memory.user.id}) }}">{{ memory.user.firstName }} {{ memory.user.lastName }}</a></h3>
                         {% if memory.user.memories|length > 0 %}
-                        <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary">
                             <span class="badge badge-light">
                                 {{ memory.user.memories|length }}
                             </span>
-                            {% if memory.user.memories|length == 1 %}souvenir{% else %}souvenirs{% endif %}
-                        </button>
+                                {% if memory.user.memories|length == 1 %}souvenir{% else %}souvenirs{% endif %}
+                            </button>
                         {% endif %}
                     </div>
                 </div>

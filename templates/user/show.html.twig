@@ -28,6 +28,25 @@
                 <div class="d-flex userName">
                     <h3>{{ user.firstName }} {{ user.lastName }}</h3>
                 </div>
+                <div>
+                    {% if user.memories|length > 0 %}
+                        <button type="button" class="btn btn-primary">
+                            <span class="badge badge-light">
+                                {{ user.memories|length }}
+                            </span>
+                            {% if user.memories|length == 1 %}souvenir{% else %}souvenirs{% endif %}
+                        </button>
+                    {% endif %}
+                    {% if user == app.user %}
+                    <button class="btn btn-secondary"><a href="{{ path('settings') }}">Vos paramètres</a></button>
+                    <button class="btn btn-secondary"><a href="">Vos souvenirs</a></button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-justify">
+                {{ user.biography|raw }}
             </div>
         </div>
     </div>

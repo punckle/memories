@@ -14,13 +14,11 @@ html,body{
 .image_inner_container{
     border-radius: 50%;
     padding: 5px;
-    background: steelblue;
-    background: -webkit-linear-gradient(to bottom, aliceblue, lightskyblue, steelblue);
-    background: linear-gradient(to bottom, aliceblue, lightblue, steelblue);
+    background: whitesmoke;
 }
 .image_inner_container img{
-    min-height: 20px;
-    min-width: 20px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
     border: 5px solid white;
 }
@@ -35,4 +33,9 @@ header.masthead {
     background-image: url("/assets/images/memory.jpg");
     background-position: center center;
     background-size: cover;
+}
+
+button a, button a:hover, button a:visited {
+    text-decoration: none;
+    color: white;
 }
