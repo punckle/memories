@@ -59,4 +59,15 @@ class MemoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @param Memory $memory
+     * @Route("/souvenir/{id}", name="memory_show")
+     */
+    public function show(Memory $memory)
+    {
+        return $this->render('memory/show.html.twig', [
+            'memory' => $memory
+        ]);
+    }
 }

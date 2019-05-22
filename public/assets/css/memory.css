@@ -5,3 +5,22 @@ header.masthead {
     background-position: center center;
     background-size: cover;
 }
+
+.image_outer_container{
+    border-radius: 50%;
+}
+
+.image_inner_container img{
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+    border-radius: 50%;
+    border: 5px solid white;
+}
+
+.userName a, .userName a:hover, .userName a:visited {
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souvenir de {{ memory.user.firstName }} {{ memory.user.lastName }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/memory.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row align-items-center my-5">
+            <div class="col-9">
+                <h1>{{ memory.title }}</h1>
+            </div>
+            <div class="col-md-8 mb-3">
+                {{ memory.content|raw }}
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-3 image_inner_container">
+                        <img class="rounded-circle"
+                        {% if memory.user.profilePicture matches '{^(https)://}' %}
+                            src="{{ memory.user.profilePicture ?? null }}"
+                        {% else %}
+                            src="/uploads/{{ memory.user.profilePicture ?? null }}"
+                        {% endif %} alt="profil">
+                    </div>
+                    <div class="col mt-3 ml-3">
+                        <h3 class="userName"><a href="{{ path('user_details', {'id': memory.user.id}) }}">{{ memory.user.firstName }} {{ memory.user.lastName }}</a></h3>
+                        {% if memory.user.memories|length > 0 %}
+                        <button type="button" class="btn btn-primary">
+                            <span class="badge badge-light">
+                                {{ memory.user.memories|length }}
+                            </span>
+                            {% if memory.user.memories|length == 1 %}souvenir{% else %}souvenirs{% endif %}
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

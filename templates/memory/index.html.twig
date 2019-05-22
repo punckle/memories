@@ -26,11 +26,20 @@
             {% for latestMemory in latestMemories %}
                 <div class="col-md-4">
                     <div class="card bg-light mb-3">
-
+                        <div class="image_outer_container">
+                            <div class="image_inner_container text-center">
+                                <img
+                                {% if latestMemory.user.profilePicture matches '{^(https)://}' %}
+                                    src="{{ latestMemory.user.profilePicture ?? null }}"
+                                {% else %}
+                                    src="/uploads/{{ latestMemory.user.profilePicture ?? null }}"
+                                {% endif %} alt="profil">
+                            </div>
+                        </div>
                         <h4 class="text-center mt-1">{{ latestMemory.title }}</h4>
                         <p class="text-center mt-1">de {{ latestMemory.user.firstName }} {{ latestMemory.user.lastName }}</p>
 
-                        <a href="" class="btn btn-primary mx-auto my-2 d-block">More</a>
+                        <a href="{{ path('memory_show', {'id': latestMemory.id}) }}" class="btn btn-secondary mx-auto my-2 d-block">More</a>
                     </div>
                 </div>
             {% endfor %}

@@ -19,8 +19,8 @@ html,body{
     background: linear-gradient(to bottom, aliceblue, lightblue, steelblue);
 }
 .image_inner_container img{
-    height: 200px;
-    width: 200px;
+    min-height: 20px;
+    min-width: 20px;
     border-radius: 50%;
     border: 5px solid white;
 }
