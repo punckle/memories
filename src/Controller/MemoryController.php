@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Memory;
+use App\Entity\User;
 use App\Form\MemoryType;
 use App\Repository\MemoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,11 +64,24 @@ class MemoryController extends AbstractController
     /**
      * @param Memory $memory
      * @Route("/souvenir/{id}", name="memory_show")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function show(Memory $memory)
     {
         return $this->render('memory/show.html.twig', [
             'memory' => $memory
+        ]);
+    }
+
+    /**
+     * @Route("/utilisateur/souvenirs", name="user_memories")
+     */
+    public function userMemories()
+    {
+        $user = $this->getUser();
+
+        return $this->render('memory/user_memories.html.twig', [
+            'user' => $user
         ]);
     }
 }

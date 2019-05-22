@@ -39,7 +39,7 @@
                     {% endif %}
                     {% if user == app.user %}
                     <button class="btn btn-secondary"><a href="{{ path('settings') }}">Vos paramètres</a></button>
-                    <button class="btn btn-secondary"><a href="">Vos souvenirs</a></button>
+                    <button class="btn btn-secondary"><a href="{{ path('user_memories') }}">Vos souvenirs</a></button>
                     {% endif %}
                 </div>
             </div>
