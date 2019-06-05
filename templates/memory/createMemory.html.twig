@@ -12,6 +12,8 @@
         {{ form_start(form) }}
         <div class="my-4">{{ form_widget(form.title) }}</div>
         <div class="mb-4">Votre souvenir : {{ form_widget(form.content) }}</div>
+        <div class="mb-4">Vous pouvez ajouter une photo à votre souvenir : </div>
+        <div class="mb-4">{{ form_widget(form.pictures) }}</div>
         <button type="submit" class="btn btn-success mb-4 float-right">Envoyer votre souvenir</button>
         {{ form_end(form) }}
     </div>

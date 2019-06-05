@@ -31,9 +31,7 @@
                 <div>
                     {% if user.memories|length > 0 %}
                         <button type="button" class="btn btn-primary">
-                            <span class="badge badge-light">
-                                {{ user.memories|length }}
-                            </span>
+                            {{ user.memories|length }}
                             {% if user.memories|length == 1 %}souvenir{% else %}souvenirs{% endif %}
                         </button>
                     {% endif %}
@@ -48,6 +46,16 @@
             <div class="col text-justify">
                 {{ user.biography|raw }}
             </div>
+        </div>
+        <div class="row mt-5">
+            {% for memory in user.memories %}
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <h4 class="text-center mt-1">{{ memory.title }}</h4>
+                    <a href="{{ path('memory_show', {'id': memory.id}) }}" class="btn btn-secondary mx-auto my-2 d-block">Voir le souvenir</a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 

@@ -28,13 +28,11 @@
                             src="/uploads/{{ memory.user.profilePicture ?? null }}"
                         {% endif %} alt="profil">
                     </div>
-                    <div class="col">
+                    <div class="col ml-4">
                         <h3 class="userName"><a href="{{ path('user_details', {'id': memory.user.id}) }}">{{ memory.user.firstName }} {{ memory.user.lastName }}</a></h3>
                         {% if memory.user.memories|length > 0 %}
                             <button type="button" class="btn btn-primary">
-                            <span class="badge badge-light">
                                 {{ memory.user.memories|length }}
-                            </span>
                                 {% if memory.user.memories|length == 1 %}souvenir{% else %}souvenirs{% endif %}
                             </button>
                         {% endif %}
