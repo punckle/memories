@@ -6,6 +6,7 @@ use App\Entity\Memory;
 use App\Entity\User;
 use App\Form\MemoryType;
 use App\Repository\MemoryRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +54,7 @@ class MemoryController extends AbstractController
                 $file = $form->get('pictures')->getData();
                 $fileName = md5(uniqid()) . '.' . $file->guessExtension();
                 $file->move($this->getParameter('upload_directory'), $fileName);
+                $memory->setPictures($fileName);
             }
             $em->persist($memory);
             $em->flush();
@@ -88,6 +90,45 @@ class MemoryController extends AbstractController
 
         return $this->render('memory/user_memories.html.twig', [
             'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/delete/memory/{id}", name="delete_memory")
+     * @param Memory $memory
+     * @param EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteMemory(Memory $memory, EntityManagerInterface $em)
+    {
+        $em->remove($memory);
+        $em->flush();
+
+        $this->addFlash('success', 'Votre souvenir a bien été supprimé');
+
+        return $this->redirectToRoute('user_memories');
+    }
+
+    /**
+     * @param Memory $memory
+     * @Route("/edit/memory/{id}", name="edit_memory")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editMemory(Memory $memory, Request $request, ObjectManager $manager)
+    {
+        $form = $this->createForm(MemoryType::class, $memory);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($memory);
+            $manager->flush();
+
+            $this->addFlash('success', 'Votre souvenir a bien été édité !');
+        }
+
+        return $this->render('memory/edit.html.twig', [
+            'form' => $form->createView(),
+            'memory' => $memory
         ]);
     }
 }

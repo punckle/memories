@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition de votre souvenir "{{ memory.title }}"{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">Modifier votre souvenir "{{ memory.title }}"</h1>
+    </div>
+
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="my-4">{{ form_widget(form.title) }}</div>
+        <div class="mb-4">Votre souvenir : {{ form_widget(form.content) }}</div>
+        <div class="mb-4">Vous pouvez modifier la photo de votre souvenir : </div>
+        <div class="mb-4">{{ form_widget(form.pictures) }}</div>
+        <button type="submit" class="btn btn-success mb-4 float-right">Modifier votre souvenir</button>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
