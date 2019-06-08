@@ -94,7 +94,7 @@ class MemoryController extends AbstractController
     }
 
     /**
-     * @Route("/delete/memory/{id}", name="delete_memory")
+     * @Route("/supprimer/souvenir/{id}", name="delete_memory")
      * @param Memory $memory
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -111,7 +111,7 @@ class MemoryController extends AbstractController
 
     /**
      * @param Memory $memory
-     * @Route("/edit/memory/{id}", name="edit_memory")
+     * @Route("/editer/souvenir/{id}", name="edit_memory")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editMemory(Memory $memory, Request $request, ObjectManager $manager)
@@ -130,6 +130,7 @@ class MemoryController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Votre souvenir a bien été édité !');
+            return $this->redirectToRoute('memory_show', ['id' => $memory->getId()]);
         }
 
         return $this->render('memory/edit.html.twig', [
