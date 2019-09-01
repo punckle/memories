@@ -8,6 +8,7 @@ use App\Form\SettingsType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,13 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class UserController extends AbstractController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @Route("/inscription", name="registration")
      * @param Request $request
@@ -25,7 +33,7 @@ class UserController extends AbstractController
      * @param LoginFormAuthenticator $authenticator
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator)
+    public function registration(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer)
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -35,6 +43,7 @@ class UserController extends AbstractController
             $user->setPassword($passwordEncoder->encodePassword($user, $form->get('password')->getData()));
             $user->setProfilePicture('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6JN5ua_iwdXe-SNEfjtCozzySIqJnYxOtUDUfaRc5KGA0eCefxA');
             $user->setHasCompletedProfile(false);
+            $user->setRoleUser(false);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -43,11 +52,14 @@ class UserController extends AbstractController
             $mail = (new \Swift_Message("Nouvelle inscription sur '60 ans d'Alain'"))
                 ->setFrom($user->getEmail())
                 ->setTo('baillet.manon@gmail.com')
-                ->setContent($this->renderView(
+                ->setBody($this->renderView(
                     'messages/registration.html.twig', [
                         'user' => $user
                     ]
-                ));
+                ),
+                    'text/html'
+                );
+            $mailer->send($mail);
 
             $this->addFlash('success', 'Merci pour votre inscription ! Un e-mail a été envoyé à l\'administrateur afin qu\'il valide votre demande d\'inscription');
             return $this->redirectToRoute('home');
@@ -56,6 +68,31 @@ class UserController extends AbstractController
         return $this->render('user/registration.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/supprimer/invitation/{id}", name="delete_invitation")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteInvitation(Request $request, UserRepository $userRepository)
+    {
+        $id = $request->get('id');
+        $user = $userRepository->find($id);
+        $this->em->remove($user);
+        $this->em->flush();
+
+        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
+
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @param User $user
+     * @Route("/accepter/invitation/{id}", name="accept_invitation")
+     */
+    public function acceptInvitation(User $user)
+    {
+
     }
 
     /**

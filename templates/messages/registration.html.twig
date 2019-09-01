@@ -9,14 +9,6 @@
         <div class="card-body">
             <h4 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h4>
             <p class="card-text text-center">Cet utilisateur aimerait participer au projet "60 ans d'Alain"</p>
-            <div class="row">
-                <div class="col-6">
-                    <a href="{{ path('delete_invitation', {'id': user.id}) }}"><button class="btn btn-warning">Deny</button></a>
-                </div>
-                <div class="col-6">
-                    <a href="{{ path('relation_accept', {'cle': adding.cle}) }}"><button class="btn btn-primary">Accept</button></a>
-                </div>
-            </div>
         </div>
     </div>
 
