@@ -79,6 +79,11 @@ class User implements UserInterface
      */
     private $memories;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $roleUser;
+
     public function __construct()
     {
         $this->memories = new ArrayCollection();
@@ -279,6 +284,18 @@ class User implements UserInterface
                 $memory->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRoleUser(): ?bool
+    {
+        return $this->roleUser;
+    }
+
+    public function setRoleUser(?bool $roleUser): self
+    {
+        $this->roleUser = $roleUser;
 
         return $this;
     }

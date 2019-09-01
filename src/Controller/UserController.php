@@ -49,7 +49,7 @@ class UserController extends AbstractController
                     ]
                 ));
 
-            $this->addFlash('success', 'Merci pour votre inscription ! Un e-mail a été envoyé à l\'administrateur afin qu\'il valide votre demande');
+            $this->addFlash('success', 'Merci pour votre inscription ! Un e-mail a été envoyé à l\'administrateur afin qu\'il valide votre demande d\'inscription');
             return $this->redirectToRoute('home');
         }
 
