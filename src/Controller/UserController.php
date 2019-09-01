@@ -72,6 +72,8 @@ class UserController extends AbstractController
 
     /**
      * @Route("/supprimer/invitation/{id}", name="delete_invitation")
+     * @param Request $request
+     * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteInvitation(Request $request, UserRepository $userRepository)
@@ -81,18 +83,28 @@ class UserController extends AbstractController
         $this->em->remove($user);
         $this->em->flush();
 
-        $this->addFlash('success', 'L\'utilisateur a bien été supprimé');
+        $this->addFlash('warning', 'L\'utilisateur a bien été supprimé');
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('admin');
     }
 
     /**
-     * @param User $user
      * @Route("/accepter/invitation/{id}", name="accept_invitation")
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function acceptInvitation(User $user)
+    public function acceptInvitation(Request $request, UserRepository $userRepository)
     {
+        $id = $request->get('id');
+        $user = $userRepository->find($id);
+        $user->setRoleUser(true);
+        $this->em->persist($user);
+        $this->em->flush();
 
+        $this->addFlash('success', 'L\'utilisateur a bien été accepté');
+
+        return $this->redirectToRoute('admin');
     }
 
     /**
