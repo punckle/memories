@@ -104,7 +104,7 @@ class MemoryController extends AbstractController
         $em->remove($memory);
         $em->flush();
 
-        $this->addFlash('success', 'Votre souvenir a bien été supprimé');
+        $this->addFlash('success', 'Le souvenir a bien été supprimé');
 
         return $this->redirectToRoute('user_memories');
     }

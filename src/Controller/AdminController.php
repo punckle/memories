@@ -11,6 +11,9 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin")
+     * @param UserRepository $userRepository
+     * @param MemoryRepository $memoryRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(UserRepository $userRepository, MemoryRepository $memoryRepository)
     {
@@ -21,6 +24,34 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'users' => $users,
             'totalUsers' => $totalUsers,
+            'memories' => $memories
+        ]);
+    }
+
+    /**
+     * @Route("/admin/users", name="admin_users")
+     * @param UserRepository $userRepository
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function adminUsers(UserRepository $userRepository)
+    {
+        $users = $userRepository->findAll();
+
+        return $this->render('admin/users.html.twig', [
+            'users' => $users
+        ]);
+    }
+
+    /**
+     * @param MemoryRepository $memoryRepository
+     * @Route("/admin/memories", name="admin_memories")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function adminMemories(MemoryRepository $memoryRepository)
+    {
+        $memories = $memoryRepository->findAll();
+
+        return $this->render('admin/memories.html.twig', [
             'memories' => $memories
         ]);
     }

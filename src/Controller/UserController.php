@@ -71,7 +71,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/supprimer/invitation/{id}", name="delete_invitation")
+     * @Route("/supprimer/utilisateur/{id}", name="delete_invitation")
      * @param Request $request
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -89,7 +89,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/accepter/invitation/{id}", name="accept_invitation")
+     * @Route("/accepter/utilisateur/{id}", name="accept_invitation")
      * @param Request $request
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
