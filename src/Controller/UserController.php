@@ -40,6 +40,15 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $mail = (new \Swift_Message("Nouvelle inscription sur '60 ans d'Alain'"))
+                ->setFrom($user->getEmail())
+                ->setTo('baillet.manon@gmail.com')
+                ->setContent($this->renderView(
+                    'messages/registration.html.twig', [
+                        'user' => $user
+                    ]
+                ));
+
             $this->addFlash('success', 'Merci pour votre inscription ! Un e-mail a été envoyé à l\'administrateur afin qu\'il valide votre demande');
             return $this->redirectToRoute('home');
         }

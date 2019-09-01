@@ -17,3 +17,7 @@ header.masthead {
 h2, h4 {
     color: #304051;
 }
+
+.card {
+    height: 495px !important;
+}
