@@ -106,7 +106,7 @@ class UserController extends AbstractController
             ->setFrom('baillet.manon@gmail.com')
             ->setTo($user->getEmail())
             ->setBody($this->renderView(
-                'messages/invitationAccept'
+                'messages/invitationAccept.html.twig'
             ),
                 'text/html'
             );

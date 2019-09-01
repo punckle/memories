@@ -32,7 +32,7 @@ ul.timeline > li:before {
 header.masthead {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
-    background-image: url("/assets/images/anniversaire.jpg");
+    background-image: url("/assets/images/container.jpg");
     background-position: center center;
     background-size: cover;
 }
