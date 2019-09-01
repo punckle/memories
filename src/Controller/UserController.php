@@ -40,17 +40,9 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Merci pour votre inscription ! Vous pouvez aller dans vos paramètres pour changer votre photo de profil et vous présenter.');
-
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,          // the User object you just created
-                $request,
-                $authenticator, // authenticator whose onAuthenticationSuccess you want to use
-                'main'          // the name of your firewall in security.yaml
-            );
+            $this->addFlash('success', 'Merci pour votre inscription ! Un e-mail a été envoyé à l\'administrateur afin qu\'il valide votre demande');
+            return $this->redirectToRoute('home');
         }
-
-        $this->redirectToRoute('settings');
 
         return $this->render('user/registration.html.twig', [
             'form' => $form->createView()
