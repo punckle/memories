@@ -26,8 +26,7 @@
             <thead>
             <tr>
                 <td></td>
-                <td>Prénom</td>
-                <td>Nom</td>
+                <td>Prénom Nom</td>
             </tr>
             </thead>
             <tbody>
@@ -44,10 +43,7 @@
                         </div>
                     </td>
                     <td value="{{ user.id }}" class="firstName">
-                        <div class="d-flex justify-content-around h-100 align-items-center">{{ user.firstName }}</div>
-                    </td>
-                    <td value="{{ user.id }}" class="lastName">
-                        <div class="d-flex justify-content-around h-100 align-items-center">{{ user.lastName }}</div>
+                        <div class="d-flex justify-content-around h-100 align-items-center">{{ user.firstName }} {{ user.lastName }}</div>
                     </td>
                 </tr>
             {% endfor %}
