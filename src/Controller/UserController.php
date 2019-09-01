@@ -94,13 +94,23 @@ class UserController extends AbstractController
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function acceptInvitation(Request $request, UserRepository $userRepository)
+    public function acceptInvitation(Request $request, UserRepository $userRepository, \Swift_Mailer $mailer)
     {
         $id = $request->get('id');
         $user = $userRepository->find($id);
         $user->setRoleUser(true);
         $this->em->persist($user);
         $this->em->flush();
+
+        $mail = (new \Swift_Message("Votre participation aux souvenirs d'Alain"))
+            ->setFrom('baillet.manon@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody($this->renderView(
+                'messages/invitationAccept'
+            ),
+                'text/html'
+            );
+        $mailer->send($mail);
 
         $this->addFlash('success', 'L\'utilisateur a bien été accepté');
 
