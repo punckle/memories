@@ -18,7 +18,8 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $data = $form->getData();
+            dd($data['mail']);
         }
 
         return $this->render('contact/index.html.twig', [

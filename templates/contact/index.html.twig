@@ -23,8 +23,17 @@
         <h4 class="text-center mt-5 mb-5">Une question ? Contactez-nous par le biais de ce formulaire.<br>
         Quelqu'un vous répondra au plus vite.</h4>
         {{ form_start(form) }}
-        <div class="my-4">
-            {{ form_widget(form.mail) }}
+        <div class="my-4 text-center">
+            {{ form_row(form.mail) }}
+        </div>
+        <div class="my-4 text-center">
+            {{ form_widget(form.subject) }}
+        </div>
+        <div class="my-4 text-center">
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-success mb-4">Envoyer</button>
         </div>
         {{ form_end(form) }}
     </div>
