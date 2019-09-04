@@ -23,14 +23,14 @@ r            </div>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    {% for picture in memory.pictures %}
+                    {% for picture in memory.images %}
                         <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="item active" {% endif %}></li>
                     {% endfor %}
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    {% for picture in memory.pictures %}
+                    {% for picture in memory.images %}
                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
                             <img class="img-responsive center-block" alt="{{ picture }}" src="/uploads/{{ picture }}"/>
                         </div>

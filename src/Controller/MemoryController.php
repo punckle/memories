@@ -46,16 +46,14 @@ class MemoryController extends AbstractController
         $memory = new Memory();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($memory->getImages() as $image) {
+                $image->setMemory($memory);
+                $em->persist($image);
+            }
             $memory->setUser($user);
             $memory->setTitle($form['title']->getData());
             $memory->setContent($form['content']->getData());
 
-            if ($request->files->get('memory')['pictures'] != null) {
-                $file = $form->get('pictures')->getData();
-                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-                $file->move($this->getParameter('upload_directory'), $fileName);
-                $memory->setPictures($fileName);
-            }
             $em->persist($memory);
             $em->flush();
 
