@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Memory;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,10 +27,10 @@ class MemoryType extends AbstractType
                     'placeholder' => 'Votre souvenir'
                 ]
             ])
-            ->add('pictures', FileType::class, [
-                'label' => 'Vous pouvez ajouter une image à votre souvenir',
-                'required' => false,
-                'data_class' => null
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImagesType::class,
+                'allow_add' => true,
+                'allow_delete' => true
             ])
         ;
     }

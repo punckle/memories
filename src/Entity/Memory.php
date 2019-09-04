@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -32,15 +34,20 @@ class Memory
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $pictures;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="memories")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="memory")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -71,18 +78,6 @@ class Memory
         return $this;
     }
 
-    public function getPictures(): ?string
-    {
-        return $this->pictures;
-    }
-
-    public function setPictures(?string $pictures): self
-    {
-        $this->pictures = $pictures;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -91,6 +86,37 @@ class Memory
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setMemory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getMemory() === $this) {
+                $image->setMemory(null);
+            }
+        }
 
         return $this;
     }
