@@ -39,18 +39,13 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Mot de passe'
                 ],
-                'label' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrez un mot de passe, s\'il vous plaît'
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit au moins faire {{limit}} caractères',
-                        'max' => 4096
-                    ])
-                ]
+                'label' => false
+            ])
+            ->add('passwordConfirm', PasswordType::class, [
+                'attr' => [
+                    'placeholder' => 'Mot de passe'
+                ],
+                'label' => false
             ])
         ;
     }
@@ -59,6 +54,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_protection' => false
         ]);
     }
 }
