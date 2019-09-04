@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e1cca3de-82d6-4dfc-a8fe-73138ceeb6d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/memory/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/memory/_collection.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/memory/createMemory.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/memory/createMemory.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -181,7 +180,7 @@
       <workItem from="1559847848875" duration="2028000" />
       <workItem from="1559983291765" duration="2053000" />
       <workItem from="1567593961959" duration="3404000" />
-      <workItem from="1567618458434" duration="2711000" />
+      <workItem from="1567618458434" duration="3490000" />
     </task>
     <servers />
   </component>
