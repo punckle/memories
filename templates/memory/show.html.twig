@@ -19,33 +19,14 @@
         <div class="row">
             <div class="col-md-8 mb-3 mt-5 text-justify">
                 {{ memory.content | raw }}
-r            </div>
+            </div>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    {% for picture in memory.images %}
-                        <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="item active" {% endif %}></li>
-                    {% endfor %}
-                </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    {% for picture in memory.images %}
-                        <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                            <img class="img-responsive center-block" alt="{{ picture }}" src="/uploads/{{ picture }}"/>
-                        </div>
-                    {% endfor %}
+                        <img class="img-responsive center-block" alt="{{ memory.image }}" src="/uploads/{{ memory.image ?? null }}"/>
                 </div>
 
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Précédent</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Suivant</span>
-                </a>
             </div>
             <div class="col-sm-12 col-md">
                 {% set a = memory.user %}
