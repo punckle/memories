@@ -20,14 +20,6 @@
             <div class="col-md-8 mb-3 mt-5 text-justify">
                 {{ memory.content | raw }}
             </div>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                        <img class="img-responsive center-block" alt="{{ memory.image }}" src="/uploads/{{ memory.image ?? null }}"/>
-                </div>
-
-            </div>
             <div class="col-sm-12 col-md">
                 {% set a = memory.user %}
                 <div class="row mt-5">
@@ -50,6 +42,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <img class="img-responsive center-block" alt="{{ memory.image }}" src="/uploads/{{ memory.image ?? null }}"/>
         </div>
     </div>
 

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1cca3de-82d6-4dfc-a8fe-73138ceeb6d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MemoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MemoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/memory/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/memory/show.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -182,7 +180,7 @@
       <workItem from="1559983291765" duration="2053000" />
       <workItem from="1567593961959" duration="3404000" />
       <workItem from="1567618458434" duration="3490000" />
-      <workItem from="1567683255123" duration="2464000" />
+      <workItem from="1567683255123" duration="2734000" />
     </task>
     <servers />
   </component>
