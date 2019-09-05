@@ -40,9 +40,9 @@ class Memory
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="memory")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $images;
+    private $image;
 
     public function __construct()
     {
@@ -90,33 +90,14 @@ class Memory
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
+    public function getImage(): ?string
     {
-        return $this->images;
+        return $this->image;
     }
 
-    public function addImage(Image $image): self
+    public function setImage(?string $image): self
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setMemory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getMemory() === $this) {
-                $image->setMemory(null);
-            }
-        }
+        $this->image = $image;
 
         return $this;
     }
