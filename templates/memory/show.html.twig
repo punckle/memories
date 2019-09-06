@@ -15,21 +15,25 @@
             <button class="btn btn-info memory"><a href="{{ path('edit_memory', {'id': memory.id}) }}">Editer le souvenir</a></button>
         {% endif %}
     </div>
-    <div class="container corpArticle">
+
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 mb-3 mt-5 text-justify">
+            <div class="col-md-8 mb-3 text-justify">
                 {{ memory.content | raw }}
+                <div class="row justify-content-center">
+                    <img class="img-fluid" alt="{{ memory.image }}" src="/uploads/{{ memory.image ?? null }}" style="display: inline-block; max-width: 800px; max-height: 800px; max-width: 100%; height:auto;"/>
+                </div>
             </div>
-            <div class="col-sm-12 col-md">
+            <div class="col">
                 {% set a = memory.user %}
                 <div class="row mt-5">
                     <div class="col-md-3 image_inner_container">
                         <img class="rounded-circle"
-                        {% if memory.user.profilePicture matches '{^(https)://}' %}
-                            src="{{ memory.user.profilePicture ?? null }}"
-                        {% else %}
-                            src="/uploads/{{ memory.user.profilePicture ?? null }}"
-                        {% endif %} alt="profil">
+                                {% if memory.user.profilePicture matches '{^(https)://}' %}
+                                    src="{{ memory.user.profilePicture ?? null }}"
+                                {% else %}
+                                    src="/uploads/{{ memory.user.profilePicture ?? null }}"
+                                {% endif %} alt="profil">
                     </div>
                     <div class="col ml-4">
                         <h3 class="userName"><a href="{{ path('user_details', {'id': memory.user.id}) }}">{{ memory.user.firstName }} {{ memory.user.lastName }}</a></h3>
@@ -42,9 +46,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <img class="img-responsive center-block" alt="{{ memory.image }}" src="/uploads/{{ memory.image ?? null }}"/>
         </div>
     </div>
 

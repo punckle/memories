@@ -29,7 +29,8 @@ class MemoryType extends AbstractType
                 ]
             ])
             ->add('image', FileType::class, [
-                'required' => false
+                'required' => false,
+                'data_class' => null
             ])
         ;
     }
