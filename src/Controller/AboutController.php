@@ -14,4 +14,12 @@ class AboutController extends AbstractController
     {
         return $this->render('about/index.html.twig');
     }
+
+    /**
+     * @Route("/general", name="general_about")
+     */
+    public function generalAbout()
+    {
+        return $this->render('about/general.html.twig');
+    }
 }
