@@ -31,9 +31,6 @@
                     <li>
                         <a class="nav-link" href="{{ path('users') }}">Les contributeurs</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('general_about') }}">A propos</a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     {% if app.user %}
@@ -74,7 +71,7 @@
         <div class="container">
             <div class="alert alert-{{ label }}">
                 {% for message in messages %}
-                    <p>{{ message | raw }}</p> {# Filtre raw permet d'intépreter toutes les balises HTML incluent dans des accolades Twig#}
+                    <p>{{ message | raw }}</p>
                 {% endfor %}
             </div>
         </div>
@@ -83,8 +80,13 @@
         {% block body %}{% endblock %}
         <footer>
             <hr>
-            <div class="text-center">
-                <a href="{{ path('contact') }}" class="btn btn-light my-4">Contactez-nous</a>
+            <div class="row text-center">
+                <div class="col-6">
+                    <a href="{{ path('contact') }}" class="btn btn-light my-4">Contactez-nous</a>
+                </div>
+                <div class="col-6">
+                    <a href="{{ path('cgu') }}" class="btn btn-light my-4">Mentions légales</a>
+                </div>
             </div>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

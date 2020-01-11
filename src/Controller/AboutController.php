@@ -16,10 +16,10 @@ class AboutController extends AbstractController
     }
 
     /**
-     * @Route("/general", name="general_about")
+     * @Route("/cgu", name="cgu")
      */
-    public function generalAbout()
+    public function cgu()
     {
-        return $this->render('about/general.html.twig');
+        return $this->render('about/cgu.html.twig');
     }
 }
