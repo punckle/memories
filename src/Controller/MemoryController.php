@@ -8,6 +8,8 @@ use App\Form\MemoryType;
 use App\Repository\MemoryRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,6 +38,7 @@ class MemoryController extends AbstractController
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/souvenir/creation", name="memory_creation")
+     * @IsGranted("ROLE_USER")
      */
     public function createMemory(Request $request, EntityManagerInterface $em)
     {
@@ -73,6 +76,7 @@ class MemoryController extends AbstractController
      * @param Memory $memory
      * @Route("/souvenir/{id}", name="memory_show")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @IsGranted("ROLE_USER")
      */
     public function show(Memory $memory)
     {
@@ -83,6 +87,7 @@ class MemoryController extends AbstractController
 
     /**
      * @Route("/utilisateur/souvenirs", name="user_memories")
+     * @IsGranted("ROLE_USER")
      */
     public function userMemories()
     {
@@ -98,6 +103,7 @@ class MemoryController extends AbstractController
      * @param Memory $memory
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Security("is_granted('ROLE_USER') and user === memory.getUser()", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le supprimer")
      */
     public function deleteMemory(Memory $memory, EntityManagerInterface $em)
     {
@@ -113,6 +119,7 @@ class MemoryController extends AbstractController
      * @param Memory $memory
      * @Route("/editer/souvenir/{id}", name="edit_memory")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("is_granted('ROLE_USER') and user === memory.getUser()", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le modifier")
      */
     public function editMemory(Memory $memory, Request $request, ObjectManager $manager)
     {
@@ -120,12 +127,6 @@ class MemoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($request->files->get('memory')['image'] != null) {
-                $file = $form->get('image')->getData();
-                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-                $file->move($this->getParameter('upload_directory'), $fileName);
-                $memory->setImage($fileName);
-            }
             $manager->persist($memory);
             $manager->flush();
 

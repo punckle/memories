@@ -28,10 +28,6 @@ class MemoryType extends AbstractType
                     'placeholder' => 'Votre souvenir'
                 ]
             ])
-            ->add('image', FileType::class, [
-                'required' => false,
-                'data_class' => null
-            ])
         ;
     }
 

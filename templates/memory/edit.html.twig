@@ -16,8 +16,6 @@
         {{ form_start(form) }}
         <div class="my-4">{{ form_widget(form.title) }}</div>
         <div class="mb-4">Votre souvenir : {{ form_widget(form.content) }}</div>
-        <div class="mb-4">Vous pouvez modifier la photo de votre souvenir : </div>
-        <div class="mb-4">{{ form_widget(form.image) }}</div>
         <button class="btn btn-secondary memory"><a href="{{ path('memory_show', {'id': memory.id}) }}" target="_blank">Voir votre souvenir</a></button>
         <button type="submit" class="btn btn-success mb-4 float-right">Modifier votre souvenir</button>
         {{ form_end(form) }}

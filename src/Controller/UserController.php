@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\PasswordUpdate;
 use App\Entity\User;
+use App\Form\PasswordUpdateType;
 use App\Form\RegistrationFormType;
 use App\Form\SettingsType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -75,6 +79,7 @@ class UserController extends AbstractController
      * @param Request $request
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteInvitation(Request $request, UserRepository $userRepository)
     {
@@ -93,6 +98,7 @@ class UserController extends AbstractController
      * @param Request $request
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @IsGranted("ROLE_ADMIN")
      */
     public function acceptInvitation(Request $request, UserRepository $userRepository, \Swift_Mailer $mailer)
     {
@@ -121,6 +127,7 @@ class UserController extends AbstractController
      * @Route("/utilisateurs", name="users")
      * @param UserRepository $userRepository
      * @return Response
+     * @IsGranted("ROLE_USER")
      */
     public function index(UserRepository $userRepository)
     {
@@ -135,6 +142,7 @@ class UserController extends AbstractController
      * @param User $user
      * @Route("/utilisateur/{id}/details", name="user_details")
      * @return Response
+     * @IsGranted("ROLE_USER")
      */
     public function show(User $user)
     {
@@ -147,6 +155,7 @@ class UserController extends AbstractController
      * @Route("/parametres", name="settings")
      * @param Request $request
      * @return Response
+     * @Security("is_granted('ROLE_USER') and user === user", message="Ce compte ne vous appartient pas")
      */
     public function settings(Request $request)
     {
@@ -190,6 +199,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/delete", name="delete_account")
+     * @Security("is_granted('ROLE_USER') and user === user", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le supprimer")
      */
     public function deleteAccount(ObjectManager $manager)
     {
@@ -203,5 +213,37 @@ class UserController extends AbstractController
         $this->addFlash('success', 'Votre compte a bien été supprimé');
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/update-password", name="update_password")
+     * @Security("is_granted('ROLE_USER') and user === memory.getUser()", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le supprimer")
+     */
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        $passwordUpdate = new PasswordUpdate();
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newPassword = $passwordUpdate->getNewPassword();
+            $hash = $encoder->encodePassword($user, $newPassword);
+
+            $user->setPassword($hash);
+
+            $this->em->persist($user);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Votre mot de passe a bien été modifié');
+
+            return $this->redirect('/');
+        }
+
+        return $this->render('user/update_password.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

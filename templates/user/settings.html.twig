@@ -23,7 +23,7 @@
                         <div class="mb-4">{{ form_widget(form.lastName) }}</div>
                         <div class="mb-4">{{ form_widget(form.profilePicture) }}</div>
                         <button type="button" class="btn btn-info my-4">
-                            <a href="" class="changePassword" style="text-decoration: none; color: white;">Changer mon mot de passe</a>
+                            <a href="{{ path('update_password') }}" class="changePassword" style="text-decoration: none; color: white;">Changer mon mot de passe</a>
                         </button>
                     </div>
                     <div class="col-md-4 row flex-column flex-nowrap mb-5">

@@ -20,9 +20,6 @@
         <div class="row">
             <div class="col-md-8 mb-3 text-justify">
                 {{ memory.content | raw }}
-                <div class="row justify-content-center">
-                    <img class="img-fluid" alt="{{ memory.image }}" src="/uploads/{{ memory.image ?? null }}" style="display: inline-block; max-width: 800px; max-height: 800px; max-width: 100%; height:auto;"/>
-                </div>
             </div>
             <div class="col">
                 {% set a = memory.user %}

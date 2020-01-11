@@ -12,8 +12,6 @@
         {{ form_start(form) }}
         <div class="my-4">{{ form_widget(form.title) }}</div>
         <div class="mb-4">Votre souvenir : {{ form_widget(form.content) }}</div>
-        <div class="mb-4">Vous pouvez ajouter une photo à votre souvenir : </div>
-        <div class="mb-4">{{ form_widget(form.image) }}</div>
         <div class="d-flex justify-content-end">
             <button class="btn btn-success">{{ button_label|default('Envoyer le souvenir') }}</button>
         </div>

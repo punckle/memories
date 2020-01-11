@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\MemoryRepository;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,6 +15,7 @@ class AdminController extends AbstractController
      * @param UserRepository $userRepository
      * @param MemoryRepository $memoryRepository
      * @return \Symfony\Component\HttpFoundation\Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(UserRepository $userRepository, MemoryRepository $memoryRepository)
     {
@@ -32,6 +34,7 @@ class AdminController extends AbstractController
      * @Route("/admin/users", name="admin_users")
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function adminUsers(UserRepository $userRepository)
     {
@@ -46,6 +49,7 @@ class AdminController extends AbstractController
      * @param MemoryRepository $memoryRepository
      * @Route("/admin/memories", name="admin_memories")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function adminMemories(MemoryRepository $memoryRepository)
     {
