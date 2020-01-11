@@ -48,3 +48,7 @@ header.masthead {
 h2, h4 {
     color: #304051;
 }
+
+img {
+    width: 700px;
+}
