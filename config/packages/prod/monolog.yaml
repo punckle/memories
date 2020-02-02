@@ -1,25 +1,31 @@
 monolog:
     handlers:
         main:
-            type: fingers_crossed
-            action_level: error
-            handler: nested
-            excluded_404s:
-                # regex: exclude all 404 errors from the logs
-                - ^/
-        nested:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-        console:
-            type: console
-            process_psr_3_messages: false
-            channels: ["!event", "!doctrine"]
-        deprecation:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
-        deprecation_filter:
-            type: filter
-            handler: deprecation
-            max_level: info
-            channels: ["php"]
+            #means only triggered when the action level is reached
+            type:         fingers_crossed
+            #means only triggered for 5xx HTTP code errors
+            action_level: critical
+            handler:      grouped
+
+        streamed:
+            type:  rotating_file
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
+            level: error
+            max_files: 10
+        #only if the records are unique over a given period of time
+        deduplicated:
+            type:    deduplication
+            time: 60
+            handler: swift
+        #combine handlers ( by mail and in a file server )
+        grouped:
+            type:    group
+            members: [streamed, deduplicated]
+        swift:
+            type:       swift_mailer
+            from_email: 'baillet.manon@gmail.com'
+            to_email:   'baillet.manon@gmail.com'
+            subject:    '[ALAIN] Error PRODUCTION !'
+            formatter:  monolog.formatter.html
+            content_type: text/html
+
