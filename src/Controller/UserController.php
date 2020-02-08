@@ -105,6 +105,7 @@ class UserController extends AbstractController
         $id = $request->get('id');
         $user = $userRepository->find($id);
         $user->setRoleUser(true);
+        $user->setRoles(["ROLE_USER"]);
         $this->em->persist($user);
         $this->em->flush();
 
@@ -217,7 +218,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/update-password", name="update_password")
-     * @Security("is_granted('ROLE_USER') and user === memory.getUser()", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le supprimer")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder)
     {
