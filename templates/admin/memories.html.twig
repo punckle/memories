@@ -37,6 +37,7 @@
                         </td>
                         <td>
                             <div class="d-flex justify-content-around h-100 align-items-center">
+                                <a href="{{ path('edit_memory', {'id': memory.id}) }}" class="btn btn-info"><i class="far fa-edit"></i></a>
                                 <a href="{{ path('delete_memory', {'id': memory.id}) }}" class="btn btn-danger"><i class="far fa-times-circle"></i></a>
                             </div>
                         </td>

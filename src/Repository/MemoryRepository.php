@@ -23,6 +23,7 @@ class MemoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')
             ->select()
+            ->where('m.fifties = false')
             ->orderBy('m.createdAt', 'DESC')
             ->setMaxResults(3)
             ->getQuery()

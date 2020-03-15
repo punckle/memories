@@ -44,6 +44,11 @@ class Memory
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $fifties = false;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -98,6 +103,18 @@ class Memory
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getFifties(): ?bool
+    {
+        return $this->fifties;
+    }
+
+    public function setFifties(?bool $fifties): self
+    {
+        $this->fifties = $fifties;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class MemoryController extends AbstractController
      */
     public function index(MemoryRepository $memoryRepository)
     {
-        $memories = $memoryRepository->findAll();
+        $memories = $memoryRepository->findBy(['fifties' => false]);
 
         $latestMemories = $memoryRepository->latestMemories();
 
@@ -119,7 +119,7 @@ class MemoryController extends AbstractController
      * @param Memory $memory
      * @Route("/editer/souvenir/{id}", name="edit_memory")
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Security("is_granted('ROLE_USER') and user === memory.getUser()", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le modifier")
+     * @Security("is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and user === memory.getUser())", message="Ce souvenir ne vous appartient pas, vous ne pouvez pas le modifier")
      */
     public function editMemory(Memory $memory, Request $request, ObjectManager $manager)
     {
@@ -136,6 +136,29 @@ class MemoryController extends AbstractController
 
         return $this->render('memory/edit.html.twig', [
             'form' => $form->createView(),
+            'memory' => $memory
+        ]);
+    }
+
+    /**
+     * @Route("/souvenirs/cinquante", name="fifties")
+     * @IsGranted("ROLE_USER")
+     */
+    public function fiftiesMemories(MemoryRepository $memoryRepository)
+    {
+        $fiftiesMemories = $memoryRepository->findBy(['fifties' => true]);
+
+        return $this->render('memory/fiftiesMemories.html.twig', [
+            'fiftiesMemories' => $fiftiesMemories
+        ]);
+    }
+
+    /**
+     * @Route("/souvenir/cinquante/{id}", name="show_fifties")
+     */
+    public function showFiftiesMemories(Memory $memory)
+    {
+        return $this->render('memory/fiftiesShow.html.twig', [
             'memory' => $memory
         ]);
     }

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souvenir des 50 ans - {{ memory.title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/memory.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="mt-5">{{ memory.title }}</h1>
+        {% if memory.user == app.user %}
+            <button class="btn btn-danger memory"><a href="{{ path('delete_memory', {'id': memory.id}) }}">Supprimer le souvenir</a></button>
+            <button class="btn btn-info memory"><a href="{{ path('edit_memory', {'id': memory.id}) }}">Editer le souvenir</a></button>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-3 text-justify">
+                {{ memory.content | raw }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
