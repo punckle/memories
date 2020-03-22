@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerLxMgetX\srcApp_KernelDevDebugContainer([
     'container.build_hash' => 'LxMgetX',
-    'container.build_id' => 'af021f12',
-    'container.build_time' => 1584300132,
+    'container.build_id' => '83ab887d',
+    'container.build_time' => 1584873698,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerLxMgetX');

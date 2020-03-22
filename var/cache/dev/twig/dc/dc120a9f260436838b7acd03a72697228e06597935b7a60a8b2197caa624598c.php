@@ -87,12 +87,9 @@ class __TwigTemplate_6ea58321d203d2dca43d1659ed2361951082a3b90cc131b8b69830be6d7
         // line 6
         echo "
     <div class=\"container\">
-        <div class=\"row\">
-            <h3 class=\"text-center mt-5 mb-5 mx-auto\">Souvenir photographique de Lorette et Denis Mathis</h3>
-        </div>
         <div class=\"mt-5 mb-5\">
             <div class=\"col mx-auto\"><img src=\"";
-        // line 12
+        // line 9
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/images/memories/mathis.png"), "html", null, true);
         echo "\" class=\"img-fluid\" alt=\"Responsive image\"></div>
         </div>
@@ -119,7 +116,7 @@ class __TwigTemplate_6ea58321d203d2dca43d1659ed2361951082a3b90cc131b8b69830be6d7
 
     public function getDebugInfo()
     {
-        return array (  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -131,9 +128,6 @@ class __TwigTemplate_6ea58321d203d2dca43d1659ed2361951082a3b90cc131b8b69830be6d7
 {% block body %}
 
     <div class=\"container\">
-        <div class=\"row\">
-            <h3 class=\"text-center mt-5 mb-5 mx-auto\">Souvenir photographique de Lorette et Denis Mathis</h3>
-        </div>
         <div class=\"mt-5 mb-5\">
             <div class=\"col mx-auto\"><img src=\"{{ asset('assets/images/memories/mathis.png') }}\" class=\"img-fluid\" alt=\"Responsive image\"></div>
         </div>

@@ -130,21 +130,63 @@ class __TwigTemplate_70ca17dbea3904497c9ba619ddaba9c6a120055e49ea33a03b6713873f9
             </p>
         </div>
         <div class=\"row mt-5 mb-5\">
-            <div class=\"col-md-4\">
+            <div class=\"col-md-6\">
                 <div class=\"card bg-light mb-3\">
                     <h4 class=\"text-center mt-1\">Bruno Bouton-Hugues</h4>
+                    <h5 class=\"text-center mt-1\">Les années 1970 dans le Loiret</h5>
                     <a href=\"";
-        // line 33
+        // line 34
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("bbh");
         echo "\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
                 </div>
             </div>
-            <div class=\"col-md-4\">
+            <div class=\"col-md-6\">
                 <div class=\"card bg-light mb-3\">
                     <h4 class=\"text-center mt-1\">Lorette & Denis Mathis</h4>
+                    <h5 class=\"text-center mt-1\">Randonnées dans les Vosges</h5>
                     <a href=\"";
-        // line 39
+        // line 41
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mathis");
+        echo "\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Lauriane Reinbold</h4>
+                    <h5 class=\"text-center mt-1\">T'as le look, Coco !</h5>
+                    <a href=\"";
+        // line 48
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("lauriane1");
+        echo "\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Lauriane Reinbold</h4>
+                    <h5 class=\"text-center mt-1\">Faire campagne avec mon Papa</h5>
+                    <a href=\"";
+        // line 55
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("lauriane2");
+        echo "\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Lauriane Reinbold</h4>
+                    <h5 class=\"text-center mt-1\">De père en petite-fille</h5>
+                    <a href=\"";
+        // line 62
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("lauriane3");
+        echo "\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Manon Baillet</h4>
+                    <h5 class=\"text-center mt-1\">Quelques souvenirs photographiques</h5>
+                    <a href=\"";
+        // line 69
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("manon");
         echo "\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
                 </div>
             </div>
@@ -172,7 +214,7 @@ class __TwigTemplate_70ca17dbea3904497c9ba619ddaba9c6a120055e49ea33a03b6713873f9
 
     public function getDebugInfo()
     {
-        return array (  147 => 39,  138 => 33,  111 => 8,  101 => 7,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
+        return array (  189 => 69,  179 => 62,  169 => 55,  159 => 48,  149 => 41,  139 => 34,  111 => 8,  101 => 7,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -206,16 +248,46 @@ class __TwigTemplate_70ca17dbea3904497c9ba619ddaba9c6a120055e49ea33a03b6713873f9
             </p>
         </div>
         <div class=\"row mt-5 mb-5\">
-            <div class=\"col-md-4\">
+            <div class=\"col-md-6\">
                 <div class=\"card bg-light mb-3\">
                     <h4 class=\"text-center mt-1\">Bruno Bouton-Hugues</h4>
+                    <h5 class=\"text-center mt-1\">Les années 1970 dans le Loiret</h5>
                     <a href=\"{{ path('bbh') }}\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
                 </div>
             </div>
-            <div class=\"col-md-4\">
+            <div class=\"col-md-6\">
                 <div class=\"card bg-light mb-3\">
                     <h4 class=\"text-center mt-1\">Lorette & Denis Mathis</h4>
+                    <h5 class=\"text-center mt-1\">Randonnées dans les Vosges</h5>
                     <a href=\"{{ path('mathis') }}\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Lauriane Reinbold</h4>
+                    <h5 class=\"text-center mt-1\">T'as le look, Coco !</h5>
+                    <a href=\"{{ path('lauriane1') }}\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Lauriane Reinbold</h4>
+                    <h5 class=\"text-center mt-1\">Faire campagne avec mon Papa</h5>
+                    <a href=\"{{ path('lauriane2') }}\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Lauriane Reinbold</h4>
+                    <h5 class=\"text-center mt-1\">De père en petite-fille</h5>
+                    <a href=\"{{ path('lauriane3') }}\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class=\"col-md-6\">
+                <div class=\"card bg-light mb-3\">
+                    <h4 class=\"text-center mt-1\">Manon Baillet</h4>
+                    <h5 class=\"text-center mt-1\">Quelques souvenirs photographiques</h5>
+                    <a href=\"{{ path('manon') }}\" class=\"btn btn-secondary mx-auto my-2 d-block\">Voir le souvenir</a>
                 </div>
             </div>
         </div>

@@ -125,64 +125,80 @@ class __TwigTemplate_c91764a0d5b400ff028b9fe3d11d7824443ea895998e3488993f5833124
     <section class=\"need bg-primary\" id=\"about\">
         <div class=\"container\">
             <div class=\"row my-5\">
-                <div class=\"col-md-4 col-sm-12\">
-                    <div class=\"card\">
-                        <div class=\"card-header\">
-                            <h2 class=\"section-heading text-center\">Le projet</h2>
-                        </div>
-                        <div class=\"card-body text-center\">
-                            <p class=\"mb-5\">
-                            Le <strong>25 mars 1960</strong>, dans la petite ville de Strasbourg, <strong>Alain</strong> voyait le jour.<br/>
-                            En <strong>2020</strong>, le petit Alain a bien grandit (et un peu vieillit, il faut bien l'admettre...).
-                            Au courant de ces <strong>60 années</strong>, il a pas mal vécu et rencontré beaucoup de personnes : famille, amis ou
-                            connaissances.<br/>
-                            Aujourd'hui, nous avons besoin de vous, qui avez marqué la vie d'Alain de près ou de loin.<br/>
-                            Nous avons besoin de vous pour lui transmettre un cadeau un peu particulier : <strong>les plus beaux
-                                souvenirs</strong> que vous avez avec lui.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"col-md-4 col-sm-12\">
-                    <div class=\"card\">
-                        <div class=\"card-header\">
-                            <h2 class=\"section-heading text-center\">Comment ?</h2>
-                        </div>
-                        <div class=\"card-body text-center\">
-                            <p class=\"mb-5\">
-                                Rien de plus simple ! Il vous suffit de suivre la procédure suivante :<br/><br>
-                                <strong>1.</strong> Cliquez sur le bouton \"Commencer l'aventure\" ci-dessous <i class=\"fas fa-arrow-down\"></i><br/>
-                                <strong>2.</strong> Remplissez le formulaire d'inscription<br/>
-                                <strong>3.</strong> Un e-mail sera envoyé à l'administrateur du site afin que votre inscription soit validée<br/>
-                                <strong>4.</strong> Une fois votre inscription validée, vous pourrez vous connecter afin de participer au projet !<br/>
-                                Si vous avez une question, n'hésitez surtout pas à la poser dans le formulaire de Contact
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"col-md-4 col-sm-12\">
-                    <div class=\"card\">
-                        <div class=\"card-header\">
-                            <h2 class=\"section-heading text-center\">Et après ?</h2>
-                        </div>
-                        <div class=\"card-body text-center\">
-                            <p class=\"mb-5\">
-                                Des souvenirs pourront être postés <strong>jusqu'à début mars 2020</strong>. Le site se fera
-                                ensuite une beauté pour pouvoir être présenté à Alain le jour de son anniversaire. <br/><br/><br/><br/>
-                                <i class=\"fas fa-exclamation-triangle\"></i> <strong>ATTENTION !</strong><br/>
-                                Ce projet est TOP SECRET ! Alain ne doit pas être au courant : la surprise n'en sera que
-                                plus belle !
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div class=\"col mx-auto\"><img src=\"";
+        // line 26
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/images/home.png"), "html", null, true);
+        echo "\" class=\"img-fluid\" alt=\"Responsive image\"></div>
+            </div>
+            <p class=\"row\">
+                <p class=\"text-justify mt-2\">
+                    Le <strong>25 mars 1960</strong>, dans la petite ville de Strasbourg, Alain voyait le jour.
+                    <br>
+                    En <strong>2020</strong>, le petit Alain a bien grandit (et un peu vieillit, il faut bien l'admettre...). Au courant de ces
+                    <strong>60 années</strong>, il a pas mal vécu et rencontré beaucoup de personnes : famille, amis ou connaissances.
+                    <br>
+                    <br>
+                    Cher Alain,
+                    <br>
+                    Depuis de nombreux mois, ta famille et tes amis se sont donnés rendez-vous sur ce site afin d'y partager
+                    quelques mots doux et souvenirs de toi.
+                    <br>
+                    Aujourd'hui, ce site te permettra de te replonger dans ces moments partagés avec tous et, nous l'espérons, te montrerons
+                    à quel point tu as été un élément important dans la vie de tous depuis ces 60 dernières années.
+                    <br>
+                    <br>
+                    <br>
+                    <i><strong>Comment utiliser le site ?</strong></i> <br>
+                    <ul>
+                        <li>
+                            Connecte-toi avec les identifiants transmis le jour de ton anniversaire
+                        </li>
+                        <li>
+                            Navigue à travers les pages pour découvrir tous les souvenirs réunis au courant de ces derniers mois
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+                </p>
+                <p>
+                    <i><strong>Et pour les retardataires ?</strong></i> <br>
+                        Si certains amis et membres de la famille sont un peu en retard sur le calendrier, pas de panique, il vous est toujours
+                        possible de participer au projet. Pour cela, il suffit de : <br>
+                    <ul>
+                        <li>
+                            Cliquez sur le bouton \"Commencer l'aventure\" ci-dessous
+                        </li>
+                        <li>
+                            Remplissez le formulaire d'inscription
+                        </li>
+                        <li>
+                            Un e-mail sera envoyé à l'administrateur du site afin que votre inscription soit validée
+                        </li>
+                        <li>
+                            Surveillez votre boîte mail : une fois votre inscription validée, tout vous sera expliqué dans un e-mail.
+                        </li>
+                    </ul>
+                </p>
             </div>
             <div class=\"mx-auto text-center\">
                 <hr class=\"light my-4\">
-                <a class=\"btn btn-primary btn-xl mb-5\" href=\"";
+                ";
         // line 80
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("registration");
-        echo "\">Commencer l'aventure</a></div>
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 80, $this->source); })()), "user", [], "any", false, false, false, 80)) {
+            // line 81
+            echo "                    <a class=\"btn btn-primary btn-xl mb-5\" href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("memory_creation");
+            echo "\">Commencer l'aventure</a>
+                ";
+        } else {
+            // line 83
+            echo "                    <a class=\"btn btn-primary btn-xl mb-5\" href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("registration");
+            echo "\">Commencer l'aventure</a>
+                ";
+        }
+        // line 85
+        echo "            </div>
         </div>
     </section>
 
@@ -207,7 +223,7 @@ class __TwigTemplate_c91764a0d5b400ff028b9fe3d11d7824443ea895998e3488993f5833124
 
     public function getDebugInfo()
     {
-        return array (  184 => 80,  112 => 10,  102 => 9,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
+        return array (  201 => 85,  195 => 83,  189 => 81,  187 => 80,  130 => 26,  112 => 10,  102 => 9,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -237,61 +253,66 @@ class __TwigTemplate_c91764a0d5b400ff028b9fe3d11d7824443ea895998e3488993f5833124
     <section class=\"need bg-primary\" id=\"about\">
         <div class=\"container\">
             <div class=\"row my-5\">
-                <div class=\"col-md-4 col-sm-12\">
-                    <div class=\"card\">
-                        <div class=\"card-header\">
-                            <h2 class=\"section-heading text-center\">Le projet</h2>
-                        </div>
-                        <div class=\"card-body text-center\">
-                            <p class=\"mb-5\">
-                            Le <strong>25 mars 1960</strong>, dans la petite ville de Strasbourg, <strong>Alain</strong> voyait le jour.<br/>
-                            En <strong>2020</strong>, le petit Alain a bien grandit (et un peu vieillit, il faut bien l'admettre...).
-                            Au courant de ces <strong>60 années</strong>, il a pas mal vécu et rencontré beaucoup de personnes : famille, amis ou
-                            connaissances.<br/>
-                            Aujourd'hui, nous avons besoin de vous, qui avez marqué la vie d'Alain de près ou de loin.<br/>
-                            Nous avons besoin de vous pour lui transmettre un cadeau un peu particulier : <strong>les plus beaux
-                                souvenirs</strong> que vous avez avec lui.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"col-md-4 col-sm-12\">
-                    <div class=\"card\">
-                        <div class=\"card-header\">
-                            <h2 class=\"section-heading text-center\">Comment ?</h2>
-                        </div>
-                        <div class=\"card-body text-center\">
-                            <p class=\"mb-5\">
-                                Rien de plus simple ! Il vous suffit de suivre la procédure suivante :<br/><br>
-                                <strong>1.</strong> Cliquez sur le bouton \"Commencer l'aventure\" ci-dessous <i class=\"fas fa-arrow-down\"></i><br/>
-                                <strong>2.</strong> Remplissez le formulaire d'inscription<br/>
-                                <strong>3.</strong> Un e-mail sera envoyé à l'administrateur du site afin que votre inscription soit validée<br/>
-                                <strong>4.</strong> Une fois votre inscription validée, vous pourrez vous connecter afin de participer au projet !<br/>
-                                Si vous avez une question, n'hésitez surtout pas à la poser dans le formulaire de Contact
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class=\"col-md-4 col-sm-12\">
-                    <div class=\"card\">
-                        <div class=\"card-header\">
-                            <h2 class=\"section-heading text-center\">Et après ?</h2>
-                        </div>
-                        <div class=\"card-body text-center\">
-                            <p class=\"mb-5\">
-                                Des souvenirs pourront être postés <strong>jusqu'à début mars 2020</strong>. Le site se fera
-                                ensuite une beauté pour pouvoir être présenté à Alain le jour de son anniversaire. <br/><br/><br/><br/>
-                                <i class=\"fas fa-exclamation-triangle\"></i> <strong>ATTENTION !</strong><br/>
-                                Ce projet est TOP SECRET ! Alain ne doit pas être au courant : la surprise n'en sera que
-                                plus belle !
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div class=\"col mx-auto\"><img src=\"{{ asset('assets/images/home.png') }}\" class=\"img-fluid\" alt=\"Responsive image\"></div>
+            </div>
+            <p class=\"row\">
+                <p class=\"text-justify mt-2\">
+                    Le <strong>25 mars 1960</strong>, dans la petite ville de Strasbourg, Alain voyait le jour.
+                    <br>
+                    En <strong>2020</strong>, le petit Alain a bien grandit (et un peu vieillit, il faut bien l'admettre...). Au courant de ces
+                    <strong>60 années</strong>, il a pas mal vécu et rencontré beaucoup de personnes : famille, amis ou connaissances.
+                    <br>
+                    <br>
+                    Cher Alain,
+                    <br>
+                    Depuis de nombreux mois, ta famille et tes amis se sont donnés rendez-vous sur ce site afin d'y partager
+                    quelques mots doux et souvenirs de toi.
+                    <br>
+                    Aujourd'hui, ce site te permettra de te replonger dans ces moments partagés avec tous et, nous l'espérons, te montrerons
+                    à quel point tu as été un élément important dans la vie de tous depuis ces 60 dernières années.
+                    <br>
+                    <br>
+                    <br>
+                    <i><strong>Comment utiliser le site ?</strong></i> <br>
+                    <ul>
+                        <li>
+                            Connecte-toi avec les identifiants transmis le jour de ton anniversaire
+                        </li>
+                        <li>
+                            Navigue à travers les pages pour découvrir tous les souvenirs réunis au courant de ces derniers mois
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+                </p>
+                <p>
+                    <i><strong>Et pour les retardataires ?</strong></i> <br>
+                        Si certains amis et membres de la famille sont un peu en retard sur le calendrier, pas de panique, il vous est toujours
+                        possible de participer au projet. Pour cela, il suffit de : <br>
+                    <ul>
+                        <li>
+                            Cliquez sur le bouton \"Commencer l'aventure\" ci-dessous
+                        </li>
+                        <li>
+                            Remplissez le formulaire d'inscription
+                        </li>
+                        <li>
+                            Un e-mail sera envoyé à l'administrateur du site afin que votre inscription soit validée
+                        </li>
+                        <li>
+                            Surveillez votre boîte mail : une fois votre inscription validée, tout vous sera expliqué dans un e-mail.
+                        </li>
+                    </ul>
+                </p>
             </div>
             <div class=\"mx-auto text-center\">
                 <hr class=\"light my-4\">
-                <a class=\"btn btn-primary btn-xl mb-5\" href=\"{{ path('registration') }}\">Commencer l'aventure</a></div>
+                {% if app.user %}
+                    <a class=\"btn btn-primary btn-xl mb-5\" href=\"{{ path('memory_creation') }}\">Commencer l'aventure</a>
+                {% else %}
+                    <a class=\"btn btn-primary btn-xl mb-5\" href=\"{{ path('registration') }}\">Commencer l'aventure</a>
+                {% endif %}
+            </div>
         </div>
     </section>
 
