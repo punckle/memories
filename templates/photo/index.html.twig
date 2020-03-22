@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souvenirs photographiques{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/about.css') }}">{% endblock %}
+{% block body %}
+
+    <header class="masthead text-center text-white d-flex">
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h1 class="text-uppercase">
+                        <strong>Souvenirs photographiques</strong>
+                    </h1>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <h3>Quelques souvenirs sous forme de photographies</h3>
+            <p>
+                Certains proches ont préféré partager des souvenirs sous forme de photographies. Celles-ci sont
+                également évocatrices de bons souvenirs ! Bon voyage dans le passé !
+            </p>
+        </div>
+        <div class="row mt-5 mb-5">
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <h4 class="text-center mt-1">Bruno Bouton-Hugues</h4>
+                    <a href="{{ path('bbh') }}" class="btn btn-secondary mx-auto my-2 d-block">Voir le souvenir</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <h4 class="text-center mt-1">Lorette & Denis Mathis</h4>
+                    <a href="{{ path('mathis') }}" class="btn btn-secondary mx-auto my-2 d-block">Voir le souvenir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
